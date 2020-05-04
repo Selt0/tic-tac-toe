@@ -71,4 +71,7 @@ class Board
     win_row?(mark) || win_col?(mark) || win_diagonal?(mark)
   end
 
+  def empty_positions?
+    grid.flatten.any?{ |pos| pos == '_' }
+  end
 end
