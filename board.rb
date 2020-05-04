@@ -50,4 +50,25 @@ class Board
       puts "  #{'-'*grid.length ** 2}"
     end
   end
+  
+  def win_row?(mark)
+    grid.any?{|row| row.all?(mark)}
+  end
+
+  def win_col?(mark)
+    grid.transpose.any?{ |col| col.all?(mark)}
+  end
+
+  def win_diagonal?(mark)
+    left_to_right = (0...grid.length).collect { |i| [i,i] }
+    right_to_left = (0...grid.length).collect { |i| [i, -i - 1] }
+    
+    left_to_right.all?{ |pos| self[pos] == mark} ||
+    right_to_left.all?{ |pos| self[pos] == mark}
+  end
+
+  def win?(mark)
+    win_row?(mark) || win_col?(mark) || win_diagonal?(mark)
+  end
+
 end
