@@ -7,12 +7,20 @@ class Player
   end
 
   def get_pos
-    puts "Player #{mark}, enter a position on the board (e.g., 0 1)"
-    print "> "
+    pos = nil
 
-    pos = parse_pos(gets.chomp)  
-    raise "Invalid position. (Make sure you only put in two numbers)" if !valid_pos?(pos)
-
+    until pos
+      puts "Player #{mark}, enter a position on the board (e.g., 0 1)"
+      print "> "
+      begin
+        pos = parse_pos(gets.chomp)  
+        raise  if !valid_pos?(pos)
+      rescue => exception
+        puts "Invalid position. (Make sure you use a space!)"
+        puts
+        pos = nil
+      end
+    end
     pos
   end
 
