@@ -6,16 +6,17 @@ class Player
     @mark = mark
   end
 
-  def get_pos
+  def get_pos(legal_positions)
     pos = nil
 
-    until pos
+    until legal_positions.include?(pos)
       puts "Player #{mark}, enter a position on the board (e.g., 0 1)"
       print "> "
       begin
         pos = parse_pos(gets.chomp)  
-        raise  if !valid_pos?(pos)
+        raise if !valid_pos?(pos) || !legal_positions.include?(pos)
       rescue => exception
+        puts
         puts "Invalid position. (Make sure you use a space!)"
         puts
         pos = nil
