@@ -33,9 +33,28 @@ class Board
   end
 
   def print
-    puts "  #{(0...grid.length).to_a.join(' ')}"
-    grid.each_with_index do |row, i|
-      puts "#{i} #{row.join(' ')}"
+    if grid.length == 3
+      puts "  #{(0...grid.length).to_a.join('   ')}"
+      pretty_board = grid.map do |row|
+        row.map.with_index do |mark, i|
+          if i == grid.length / 2
+          " | #{mark.to_s} | "
+          else
+            mark
+          end
+        end
+      end
+
+      pretty_board.each_with_index do |row, i|
+        puts "#{i} #{row.join('')}"
+        break if i == grid.length - 1
+        puts "  #{'-'*grid.length ** 2}"
+      end
+    else
+      puts "  #{(0...grid.length).to_a.join(' ')}"
+      grid.each_with_index do |row, i|
+        puts "#{i} #{row.join(' ')}"
+      end
     end
   end
   
