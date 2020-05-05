@@ -51,7 +51,7 @@ class Board
         puts "  #{'-'*grid.length ** 2}"
       end
     else
-      puts "  #{(0...grid.length).to_a.join(' ')}"
+      puts "  #{(0...grid.length).to_a.join('   ')}"
       grid.each_with_index do |row, i|
         puts "#{i} #{row.join(' ')}"
       end
