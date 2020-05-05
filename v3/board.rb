@@ -81,4 +81,10 @@ class Board
   def empty_positions?
     grid.flatten.any?{ |pos| pos == '_' }
   end
+
+  def legal_positions
+    indices = (0...grid.length).to_a
+    pos = indices.product(indices)
+    pos.select{ |pos| empty?(pos)}
+  end
 end
