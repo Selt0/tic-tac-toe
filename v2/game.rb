@@ -6,8 +6,8 @@ class Game
   attr_reader :players, :current_player, 
               :board
 
-  def initialize(player1_mark, player2_mark)
-    @board = Board.new
+  def initialize(size, player1_mark, player2_mark)
+    @board = Board.new(size)
     @players = [Player.new(player1_mark), Player.new(player2_mark)]
     @current_player = players.first
   end
